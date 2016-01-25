@@ -61,9 +61,10 @@ It handles single instances as well, so you can bind an instance like this.
 
 ```js
 ioc.bind(PaymentService, new StripeService());
+```
+To create a concrete instance, call the following.
 
-//To create a concrete instance, call the following.
-
+```js
 var paymentService = ioc.make(PaymentService);
 ```
 That's it, you now have a concrete instance of that interface.

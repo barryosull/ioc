@@ -75,7 +75,7 @@ Now, in the above, you'll notice that the "chargeAccount" method is missing it's
 So let's make a class that solves that problem and inject it in.
 
 ```js
-var StripeApi = Class.make({
+var StripeApi = ClassFactory.make({
   charge: function(amount, currency, token){
     // make the api call to stripe
   }
@@ -83,7 +83,7 @@ var StripeApi = Class.make({
 
 //Here's now we tell our class about the dependencies it needs.
 
-var StripeService = Class.subClass({
+var StripeService = ClassFactory.make({
  
   _interfaces: [PaymentService],
   

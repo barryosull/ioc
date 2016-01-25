@@ -29,7 +29,7 @@ var ClassFactory = require('ioc').classFactory;
 
 var StripeService = ClassFactory.make({
  
-  _interfaces: [PaymentService],
+  _implements: [PaymentService],
   
   chargeAccount: function(paymentDetails) {
     
@@ -85,7 +85,7 @@ var StripeApi = ClassFactory.make({
 
 var StripeService = ClassFactory.make({
  
-  _interfaces: [PaymentService],
+  _implements: [PaymentService],
   
   _dependencies: {
     stripeApi: StripeApi
@@ -103,3 +103,31 @@ These dependencies are automatically created and associated when the class is ma
 ###Dependency trees
 
 Dependency injection also works with interfaces, it will automatically create a concrete instance of that interface. This allows you to instantiate complex dependency trees, with minimal code and messiness.
+
+###Extending classes
+
+If you'd like to extend an existing class, you can do it like this.
+
+```js
+var LoggedStripeService = ClassFactory.make({
+ 
+  _extends: StripeService,
+
+  _implements: [PaymentService],
+  
+  _dependencies: {
+    stripeApi: StripeApi
+  },
+  
+  chargeAccount: function(paymentDetails) {
+    console.log(paymentDetails);
+    this.stripeApi.charge(paymentDetails.amount, paymentDetails.currency, paymentDetails.token);  
+  }
+});
+```
+
+This makes it easy to add functionality to a class.
+
+###Constructors
+
+The ClassFactory is using [stape.js](https://hay.github.io/stapes/) behind the scenes, so anything you can do with that, you can do with the ClassFactory. This includes creating constructors and all the other lovely stuff it adds. I've disabled the event aspects, as it's not core to this library, but if you really want it, just let me know.

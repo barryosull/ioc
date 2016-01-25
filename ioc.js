@@ -1,6 +1,8 @@
 
 var Stapes = require('stapes');
 
+console.log("Test");
+
 var ioc = {
 
 	interfaceToConcrete: {},
@@ -52,9 +54,10 @@ ioc.interfaceFactory = {
 ioc.classFactory = {
   
   make: function(schema) {
-    var constructor = Stapes.subclass(schema);
-    var interfaces = schema._interfaces;
-    constructor.prototype._interfaces = interfaces;
+    var baseClass = schema._extends || Stapes;
+    var constructor = baseClass.subclass(schema, true);
+    var interfaces = schema._implements;
+    constructor.prototype._implements = interfaces;
     for(var key in interfaces) {
       this.assertObjectImplementsInterface(schema, interfaces[key]);
     }

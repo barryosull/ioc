@@ -51,7 +51,7 @@ ioc.interfaceFactory = {
 //Factory for making classes that implement interfaces
 ioc.classFactory = {
   
-  subClass: function(schema) {
+  make: function(schema) {
     var constructor = Stapes.subclass(schema);
     var interfaces = schema._interfaces;
     constructor.prototype._interfaces = interfaces;

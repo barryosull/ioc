@@ -110,20 +110,14 @@ If you'd like to extend an existing class, you can do it like this.
 
 ```js
 var LoggedStripeService = ClassFactory.make({
- 
+
   _extends: StripeService,
 
-  _implements: [PaymentService],
-  
-  _dependencies: {
-    stripeApi: StripeApi
-  },
-  
   chargeAccount: function(paymentDetails) {
     console.log(paymentDetails);
-    this.stripeApi.charge(paymentDetails.amount, paymentDetails.currency, paymentDetails.token);  
+    LoggedStripeService.parent.chargeAccount.call(this, paymentDetails);
   }
-});
+})
 ```
 
 This makes it easy to add functionality to a class.

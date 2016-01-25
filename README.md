@@ -1,15 +1,14 @@
 # ioc
 
-Javascript, especially NPM modules, lack one aspect of OOP systems that most have come to rely on, interfaces and dependency injection.
-
-That's why we created an IOC for node, modelled after the Laravel 5.1 IOC container.
+Javascript lacks one aspect of OOP systems that most have come to rely on, interfaces and dependency injection.
+That's why we created an Inversion of Control (IOC) container for commonjs apps, modelled after the Laravel 5.1 IOC container.
 
 It allows you to
 
 - Create interfaces
 - Create classes that implement those interfaces
-- Bind those interfaces to those classes
-- Inject implementations of interfaces where ever you need them
+- Bind classes to those classes
+- Inject implementations of interfaces wherever you need them
 
 ## Usage
 
@@ -38,7 +37,7 @@ var StripeService = ClassFactory.make({
 ```
 
 If you've ever used BoackboneJS or StapesJs, the class constructor will look familiar. 
-When it's created, the ClassFactory makes sure that the objects schema matches the interface defined. Simply pass in the interfaces as an array in the param _interfaces, and the factory will take care of the rest.
+When it's created, the ClassFactory makes sure that the objects schema matches the interface defined. Simply pass in the interfaces as an array in the param "_implements", and the factory will take care of the rest.
 
 You can pass multiple interfaces, the factory will make sure that they're all implemented.
 

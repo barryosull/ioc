@@ -2,14 +2,14 @@
 
 Javascript, especially NPM modules, lack one aspect of OOP systems that most have come to rely on, interfaces and dependency injection.
 
-That's why we created an IOC for node, modelled after the Laravel 5.1's IOC container.
+That's why we created an IOC for node, modelled after the Laravel 5.1 IOC container.
 
 It allows you to
 
 - Create interfaces
 - Create classes that implement those interfaces
 - Bind those interfaces to those classes
-- Inject implementations of interfaces where ever you need them.
+- Inject implementations of interfaces where ever you need them
 
 ## Usage
 
@@ -23,7 +23,7 @@ var PaymentService = InterfaceFactory.make({
   chargeAccount: function(paymentDetails) {}
 });
 
-This creates an interface that you can use when creating a class, like the following.
+//This creates an interface that you can use when creating a class, like the following.
 
 var ClassFactory = require('ioc').classFactory;
 
@@ -42,7 +42,7 @@ When it's created, the ClassFactory makes sure that the objects schema matches t
 
 You can pass multiple interfaces, the factory will make sure that they're all implemented.
 
-###Using the IOC
+###Injecting classes:
 
 To bind a class to an interface, add the following in your bootstrap code.
 
@@ -62,20 +62,21 @@ It handles single instances as well, so you can bind an instance like this.
 ```js
 ioc.bind(PaymentService, new StripeService());
 
-//To create a concrete instance, call the foloowing.
+//To create a concrete instance, call the following.
+
 var paymentService = ioc.make(PaymentService);
 ```
 That's it, you now have a concrete instance of that interface.
 
-###Dependency injection
+###Dependency injection:
 
-Now, in the above, you'll notice that the "chargeAccount" method is missing it's implementation details, it's infrasturcture if you will.
+Now, in the above, you'll notice that the "chargeAccount" method is missing it's implementation details, it's infrastructure if you will.
 So let's make a class that solves that problem and inject it in.
 
 ```js
 var StripeApi = Class.make({
   charge: function(amount, currency, token){
-    // make the payment
+    // make the api call to stripe
   }
 });
 

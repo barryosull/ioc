@@ -1,0 +1,19 @@
+{
+    "name": "ioc",
+    "author" : "Barry O Sullivan<barry@tercet.io>",
+    "homepage" : "https://github.com/eventsourced/ioc",
+    "main": "ioc.js",
+    "description": "A dependency injection module for javascript, modelled after Laravel 5.1's IOC container.",
+    "keywords": [
+        "dependency", "injection", "ioc", "interfaces", "trees"
+    ],
+    "dependencies": {
+      "stapes": "0.8.1"
+    },
+    
+    "version": "0.1.0",
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/eventsourced/ioc"
+    }
+}

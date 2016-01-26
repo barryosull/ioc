@@ -17,10 +17,11 @@ var ioc = {
     //It's an interface
     var concreteClass = this.interfaceToConcrete[interface._guid];
     if (!concreteClass) {
-      throw "Could not load a concrete class for the interface: " + interface;
+      throw "Could not load a concrete class for interface["+interface._guid+"]: " + interface;
     }
     return concreteClass;
   },
+  
   bind: function (interface, object) {
     var concrete = object;
     //If it's a constructor, make it

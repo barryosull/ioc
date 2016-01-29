@@ -146,6 +146,7 @@ ioc.enableInterfaceChecking();
 
 //Ignore the checks altogether and just assume it's all ok
 ioc.disableInterfaceChecking();
+```
 
 In development you can turn the method checking on, to make debugging easier (it's on by default). Then in production you turn it off to gain a little more speed.
 

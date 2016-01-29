@@ -121,6 +121,34 @@ var LoggedStripeService = ClassFactory.make({
 
 This makes it easy to add functionality to a class.
 
+###Extending interfaces
+
+You can also extend interfaces if you'd like
+
+```js
+var ReversablePaymentService = InterfaceFactory.make({
+  
+  _extends: [PaymentService],
+  
+  reverseChange: function(paymentDetails) {}
+});
+```
+
+This makes combining interfaces a lot easier. It checks the method signatures as well, so if one interface overwrites another with a different method signature, it will throw an exception.
+
+###Production and Development Environments
+
+This library works by [duck-typing](https://en.wikipedia.org/wiki/Duck_typing), it checks the functions defined in the interface and matches them against the class. It does this whenever you define a class or bind a class to an interface. Now, this can cause a little slowdown, not much, but for some that's a deal breaker. That's why you can turn off the interface checking, like so.
+
+```js
+//Throw errors if interface methods are missing
+ioc.enableInterfaceChecking();
+
+//Ignore the checks altogether and just assume it's all ok
+ioc.disableInterfaceChecking();
+
+In development you can turn the method checking on, to make debugging easier (it's on by default). Then in production you turn it off to gain a little more speed.
+
 ###Constructors
 
 The ClassFactory is using [stape.js](https://hay.github.io/stapes/) behind the scenes, so anything you can do with that, you can do with the ClassFactory. This includes creating constructors and all the other lovely stuff it adds. I've disabled the event aspects, as it's not core to this library, but if you really want it, just let me know.

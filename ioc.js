@@ -6,7 +6,6 @@ var ioc = {
   isInterfaceCheckingOn: true,
  
   make: function (interface) {
-
     //Is it a constructor
     if (typeof interface === 'function') {
       var constructed = new interface();
